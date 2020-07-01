@@ -1,29 +1,16 @@
-describe('Testes do obejto createSpy', () => {
+describe('Testes do obejto jasmine.createSpy', () => {
    
-    let calculadora = {
-        somar: function (n1, n2) {
-            return n1 + n2;
-        }
-    };
+    let somar;
     
     beforeAll(() => {
-        spyOn(calculadora, 'somar');
+        somar = jasmine.createSpy('somar');
     });
 
-    it('deve possuir o objeto somar como não definido', () => {
-        expect(calculadora.somar(1, 1)).toBeUndefined();
+    it('deve demonstrar o uso do jasmine.createSpy', () => {
+        somar(1, 2);
+        
+        expect(somar).toHaveBeenCalled();
+        expect(somar).toHaveBeenCalledWith(1, 2);
     });
 
-    it('deve chamar o método somar duas vezes', () => {
-        calculadora.somar(1, 1);
-        calculadora.somar(1, 2)
-        expect(calculadora.somar).toHaveBeenCalledTimes(3);
-    });
-
-    it('deve chamar o método somar com os parâmetros válidos', () => {
-        calculadora.somar(1, 1);
-        calculadora.somar(1, 2)
-        expect(calculadora.somar).toHaveBeenCalledWith(1, 1);
-        expect(calculadora.somar).toHaveBeenCalledWith(1, 2);
-    });
 });
